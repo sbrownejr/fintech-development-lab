@@ -1,15 +1,25 @@
+print("=" * 45)
+print("     Shawn's FinTech AI Assistant")
+print("=" * 45)
+print()
+
 from ollama import chat
 
-user_question = input("Ask a finance or blockchain question: ")
+while True:
+    user_question = input("Ask a finance or blockchain question: ")
 
-response = chat(
-    model="gemma3:4b",
-    messages=[
-        {
-            "role": "user",
-            "content": user_question,
-        }
-    ],
-)
+    if  user_question.lower() == "exit":
+         print("\nThanks for using Shawn's FinTech AI Assistant!")
+         break
 
-print(response["message"]["content"])
+    response = chat(
+        model="gemma3:4b",
+        messages=[
+            {
+                "role": "user",
+                "content": user_question,
+            },
+        ],
+    )
+
+    print(response["message"]["content"])
