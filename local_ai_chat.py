@@ -5,6 +5,8 @@ print()
 
 from ollama import chat
 
+
+messages = []  
 while True:
     user_question = input("Ask a finance or blockchain question: ")
 
