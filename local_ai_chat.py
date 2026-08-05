@@ -4,7 +4,19 @@ print("=" * 45)
 print()
 
 from ollama import chat
+from datetime import datetime
+def save_conversation(messages):
+     if not messages:
+          return
+     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+     filename = f"conversation_{timestamp}.txt"
+     with open(filename, "w", encoding="utf-8") as file:
+          for message in messages:
+               role = message["role"].capitalize()
+               content = message["content"]
+               file.write(f"{role}: {content}\n\n")
 
+     print(f"\nConversation saved as {filename}\n")
 
 messages = []  
 while True:
@@ -23,6 +35,7 @@ while True:
          print("\nConversation memory cleared.\n")
          continue
     if  user_question.lower() =="exit":
+         save_conversation(messages)
          print("\nThanks for using Shawn's FinTech AI Assistant!")
          break
     
