@@ -1,0 +1,2 @@
+This is a safe test file inside the approved workspace.
+Shawn's AI Agent should be allowed to read this file.
