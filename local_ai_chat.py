@@ -9,7 +9,7 @@ def save_conversation(messages):
      if not messages:
           return
      timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-     filename = f"conversation_{timestamp}.txt"
+     filename = f"conversations/conversation_{timestamp}.txt"
      with open(filename, "w", encoding="utf-8") as file:
           for message in messages:
                role = message["role"].capitalize()
