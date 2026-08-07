@@ -54,6 +54,7 @@ if __name__ == "__main__":
             print("  help  - Show available commands")
             print("  files - Show approved workspace files")
             print("  read <filename> - Read an approved workspace file")
+            print("  analyze <filename> - Analyze an approved workspace document")
             print("  clear - Clear the conversation memeory")
             print("  exit  - Close the AI Assistant\n")
             continue
@@ -76,7 +77,20 @@ if __name__ == "__main__":
             except Exception as error:
                 print(f"\nUnable to read file: {error}\n")
             continue
-
+        if user_question.lower().startswith("analyze "):
+            filename = user_question[8:].strip()
+            file_path = WORKSPACE_FOLDER / filename
+            try:
+                content = read_workspace_file(file_path)
+                user_question = (
+                    f"Analyze the following document named '{filename}'. "
+                    "Provide a clear summary, identify the main ideas, "
+                    "highlight important details, and explain the material "
+                    f"in plain language.\n{content}"
+                ) 
+            except Exception as error:
+                print(f"\nUnable to analyze file: {error}\n")
+                continue
         if  user_question.lower() == "clear":
             messages.clear()
             print("\nConversation memory cleared.\n")
