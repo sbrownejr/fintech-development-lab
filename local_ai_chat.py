@@ -19,6 +19,15 @@ def read_workspace_file(file_path):
     if not is_safe_workspace_file(file_path):
          return "Acess denied. The file must be inside the approved workspace folder." 
     return Path(file_path).read_text(encoding="utf-8")
+
+def list_workspace_files():
+    if not WORKSPACE_FOLDER.exists():
+        return []
+    return [
+        file.name
+        for file in WORKSPACE_FOLDER.iterdir()
+        if file.is_file()
+    ]
          
 def save_conversation(messages):
      if not messages:
@@ -43,9 +52,31 @@ if __name__ == "__main__":
         if  user_question.lower() == "help":
             print("\nAvailable commands:")
             print("  help  - Show available commands")
+            print("  files - Show approved workspace files")
+            print("  read <filename> - Read an approved workspace file")
             print("  clear - Clear the conversation memeory")
             print("  exit  - Close the AI Assistant\n")
             continue
+        if  user_question.lower() == "files":
+             files = list_workspace_files()
+             if files:
+                 print("\nWorkspace files:")
+                 for file in files:
+                     print(f"  - {file}")
+             else:
+                 print("nNo files found in the workspace.")
+        if user_question.lower().startswith("read "):
+            filename = user_question[5:].strip()
+            file_path = WORKSPACE_FOLDER / filename
+            try:
+                content = read_workspace_file(file_path)
+                print(f"\nContents of {filename}:\n")
+                print(content)
+                print()
+            except Exception as error:
+                print(f"\nUnable to read file: {error}\n")
+            continue
+
         if  user_question.lower() == "clear":
             messages.clear()
             print("\nConversation memory cleared.\n")
