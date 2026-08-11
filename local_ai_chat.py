@@ -56,7 +56,16 @@ if __name__ == "__main__":
             print("  read <filename> - Read an approved workspace file")
             print("  analyze <filename> - Analyze an approved workspace document")
             print("  clear - Clear the conversation memeory")
+            print("  status - Shos AI Assistant system status")
             print("  exit  - Close the AI Assistant\n")
+            continue
+        if  user_question.lower() == "status":
+            print("\nAI Assistant System Status:")
+            print("  Core Assistant: ONLINE")
+            print(f"  Workspace: {'READY' if WORKSPACE_FOLDER.exists() else 'NOT FOUND'}")
+            print(f"  Approved Files: {len(list_workspace_files())}")
+            print(f"  Conversation Memory: {len(messages)} messages")
+            print(f" Safety Mode: APPROVED WORKSPACE ONLY\n")
             continue
         if  user_question.lower() == "files":
              files = list_workspace_files()
