@@ -6,6 +6,7 @@ print()
 from ollama import chat
 from datetime import datetime
 from pathlib import Path
+from difflib import get_close_matches
 WORKSPACE_FOLDER = Path("workspace").resolve()
 
 def is_safe_workspace_file(file_path):
@@ -108,6 +109,12 @@ if __name__ == "__main__":
             save_conversation(messages)
             print("\nThanks for using Shawn's FinTech AI Assistant!")
             break
+        commands = ["help", "status", "files", "clear", "exit"]
+        first_word = user_question.lower().split()[0]
+        close_match = get_close_matches(first_word, commands, n=1, cutoff=0.75)
+        if close_match and first_word not in commands:
+            print(f"\nDid you mean '{close_match[0]}'? Type 'help' to see available commands.\n")
+            continue
         
         messages.append({
             "role": "user",
