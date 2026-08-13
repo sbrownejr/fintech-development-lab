@@ -76,6 +76,7 @@ if __name__ == "__main__":
                      print(f"  - {file}")
              else:
                  print("nNo files found in the workspace.")
+             continue
         if user_question.lower().startswith("read "):
             filename = user_question[5:].strip()
             file_path = WORKSPACE_FOLDER / filename
