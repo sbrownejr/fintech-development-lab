@@ -1,5 +1,5 @@
 print("=" * 45)
-print("     Shawn's FinTech AI Assistant")
+print("     Berean - FinTech AI Agent")
 print("=" * 45)
 print()
 
@@ -108,7 +108,7 @@ if __name__ == "__main__":
             continue
         if  user_question.lower() =="exit":
             save_conversation(messages)
-            print("\nThanks for using Shawn's FinTech AI Assistant!")
+            print("\nThanks for using Berean - FinTech AI Agent!")
             break
         commands = ["help", "status", "files", "clear", "exit"]
         first_word = user_question.lower().split()[0]

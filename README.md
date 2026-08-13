@@ -1,7 +1,7 @@
 # FinTech Development Lab
 A hands-on learning project focused on Python, AI agents, blockchain, financial technology, and software development.
-## Shawn's FinTech AI Assistant
-This repository includes a Python-based FinTech AI Assistant developed through a series of incremental versions. 
+## Berean - FinTech AI Agent
+This repository includes Berean, a Python-based FinTech AI Agent developed through a series of incremental versions. 
 ### Current Capabilities
 - Interactive AI conversation loop
 - Finance and blockchain question support
